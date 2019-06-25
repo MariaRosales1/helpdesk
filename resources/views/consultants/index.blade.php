@@ -1,5 +1,11 @@
-<table>
-    <thead>
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<div class="limiter">
+	<div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                <table>
+                    <thead>
         @if (count($consultants) != 0)
             <tr>
                 <td>Identificación</td>

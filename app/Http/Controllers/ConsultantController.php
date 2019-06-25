@@ -28,6 +28,8 @@ class ConsultantController extends Controller
         $newConsultant = new ConsultantModel;
         $newConsultant->fill($data);
         $newConsultant->save();
+        
+        
     }
 
     public function show($id)
