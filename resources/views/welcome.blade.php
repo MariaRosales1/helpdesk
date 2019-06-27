@@ -87,6 +87,8 @@
                 <div class="links">
                     <a href="{{route('consultants.index')}}">Lista de Asesores</a>
                     <a href="{{route('consultants.create')}}">Crear Asesores</a>
+                    <a href="{{route('timeservice.create')}}">Establecer Horario de Atención</a>
+                    <a href="{{route('timeservice.index')}}">Horario de atención</a>
                 </div>
             </div>
         </div>
