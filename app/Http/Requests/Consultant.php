@@ -24,9 +24,9 @@ class Consultant extends FormRequest
     public function rules()
     {
         return [
-            'identification' => 'string',
-            'name' => 'string',
-            'email' => 'email',
+            'identification' => 'string|required',
+            'name' => 'string|required',
+            'email' => 'email|required',
             'password' => 'string|min:6|required',
         ];
     }

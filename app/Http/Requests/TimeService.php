@@ -24,10 +24,11 @@ class TimeService extends FormRequest
     public function rules()
     {
         return [
-            'diaInicio' => 'string',
-            'diaFin' => 'string',
-            'horaInicio' => 'string',
-            'horaFin' => 'string',
+            
+            'diaInicio' => 'string|required',
+            'diaFin' => 'string|required',
+            'horaInicio' => 'string|required',
+            'horaFin' => 'string|required',
         ];
     }
 }
