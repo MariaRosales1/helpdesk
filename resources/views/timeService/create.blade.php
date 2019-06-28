@@ -1,6 +1,33 @@
 @extends('plantilla')
 @section('seccion')
 
+
+
+@error("diaInicio")
+    <div class="alert alert-danger container">
+        Campos vacios
+    </div>
+@enderror
+@error("diaFin")
+    <div class="alert alert-danger container">
+        Campos vacios
+    </div>
+@enderror
+@error("horaInicio")
+    <div class="alert alert-danger container">
+        Campos vacios
+    </div>
+@enderror
+
+@error("horaFin")
+    <div class="alert alert-danger container">
+        Campos vacios
+    </div>
+@enderror
+
+
+
+
 <div class="container">
     <form method="POST" action="{{route('timeservice.store')}}">
     @csrf
@@ -33,10 +60,10 @@
     <br>
     <div class="row">
         <div class="col">
-        <input type="text" class="form-control" placeholder="Hora Inicio" name="horaInicio">
+        <input type="time" class="form-control" placeholder="Hora Inicio" name="horaInicio">
         </div>
         <div class="col">
-        <input type="text" class="form-control" placeholder="Hora Fin" name="horaFin">
+        <input type="time" class="form-control" placeholder="Hora Fin" name="horaFin">
         </div>
     </div>
     <br>

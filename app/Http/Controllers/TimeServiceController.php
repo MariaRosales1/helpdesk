@@ -29,6 +29,7 @@ class TimeServiceController extends Controller
         $newTimeService = new TimeServiceModel;
         $newTimeService->fill($data);
         $newTimeService->save();  
+        return back()->with('mensaje','Asesor ingresado correctamente');
     }
     
 
