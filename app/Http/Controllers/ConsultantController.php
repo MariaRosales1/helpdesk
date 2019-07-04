@@ -28,8 +28,7 @@ class ConsultantController extends Controller
         $newConsultant = new ConsultantModel;
         $newConsultant->fill($data);
         $newConsultant->save();
-        
-        
+        return back()->with('mensaje','El asesor fue registrado exitosamente');
     }
 
     public function show($id)
@@ -39,16 +38,25 @@ class ConsultantController extends Controller
 
     public function edit($id)
     {
-        //
+        $consultant= ConsultantModel::findOrFail($id);
+        return view('consultants.edit', [
+            'consultant' => $consultant,
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Consultant $request, $id)
     {
-        //
+        $data = $request->validated();
+        $consultantUpdate = ConsultantModel::findOrFail($id);
+        $consultantUpdate->fill($data);
+        $consultantUpdate->save();
+        return redirect('consultants')->with('mensaje','El asesor fue actualizado exitosamente');
     }
 
     public function destroy($id)
     {
-        //
+        $consultantDelete = ConsultantModel::findOrFail($id);
+        $consultantDelete->delete();
+        return redirect('consultants')->with('mensaje','Asesor Eliminado exitosamente');        
     }
 }
