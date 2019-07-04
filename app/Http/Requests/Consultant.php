@@ -24,10 +24,26 @@ class Consultant extends FormRequest
     public function rules()
     {
         return [
-            'identification' => 'string|required',
-            'name' => 'string|required',
-            'email' => 'email|required',
-            'password' => 'string|min:6|required',
+            'identification' => 'required|integer|min:5|unique:Consultants',
+            'name' => 'required',
+            'email' => 'required|email|unique:Consultants',
+            'password' => 'required|min:6',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'identification.required' => 'Se debe llenar todos los campos',
+            'identification.integer' => 'El nombre debe ser entero',
+            'identification.min' => '',
+            'identification.unique' => '',
+            'name.required' => 'Se debe llenar todos los campos',
+            'email.required' => 'Se debe llenar todos los campos',
+            'email.email' => '',
+            'email.unique' => '',
+            'password.required' => 'Se debe llenar todos los campos',
+            'password.min' => 'Se debe llenar todos los campos',
         ];
     }
 }
