@@ -34,8 +34,6 @@ class Consultant extends FormRequest
     public function messages()
     {
         return [
-            'identification.required' => 'Se debe llenar todos los campos',
-            'identification.integer' => 'El nombre debe ser entero',
             'identification.min' => '',
             'identification.unique' => '',
             'name.required' => 'Se debe llenar todos los campos',
