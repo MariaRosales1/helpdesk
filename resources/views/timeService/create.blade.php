@@ -1,35 +1,17 @@
 @extends('plantilla')
 @section('seccion')
+    @if(session('mensaje'))
+        <div class="alert alert-success"> {{session('mensaje')}}</div>
+    @endif
 
+    @if(!$errors->isEmpty())
+        <div class="alert alert-danger container    ">
+            Se debe llenar todos los campos
+        </div>
+    @endif
 
-
-@error("diaInicio")
-    <div class="alert alert-danger container">
-        Campos vacios
-    </div>
-@enderror
-@error("diaFin")
-    <div class="alert alert-danger container">
-        Campos vacios
-    </div>
-@enderror
-@error("horaInicio")
-    <div class="alert alert-danger container">
-        Campos vacios
-    </div>
-@enderror
-
-@error("horaFin")
-    <div class="alert alert-danger container">
-        Campos vacios
-    </div>
-@enderror
-
-
-
-
-<div class="container">
-    <form method="POST" action="{{route('timeservice.store')}}">
+    <div class="container">
+        <form method="POST" action="{{route('timeservice.store')}}">
     @csrf
 
     <br>
