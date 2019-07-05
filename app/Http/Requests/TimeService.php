@@ -23,12 +23,21 @@ class TimeService extends FormRequest
      */
     public function rules()
     {
+        return [            
+            'diaInicio' => 'required',
+            'diaFin' => 'required',
+            'horaInicio' => 'required',
+            'horaFin' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
         return [
-            
-            'diaInicio' => 'string|required',
-            'diaFin' => 'string|required',
-            'horaInicio' => 'string|required',
-            'horaFin' => 'string|required',
+            'diaInicio.required' => 'Se debe llenar todos los campos',
+            'diaFin.required' => 'Se debe llenar todos los campos',
+            'horaInicio.required' => 'Se debe llenar todos los campos',
+            'horaFin.required' => 'Se debe llenar todos los campos',
         ];
     }
 }
