@@ -23,25 +23,41 @@ class Consultant extends FormRequest
      */
     public function rules()
     {
-        return [
-            'identification' => 'required|integer|min:5|unique:Consultants',
-            'name' => 'required',
-            'email' => 'required|email|unique:Consultants',
-            'password' => 'required|min:6',
-        ];
+        switch ($this->method()) {
+            case 'PUT':
+                $rules = [
+                    'identification' => 'required|integer|min:5|unique:Consultants,id,:id',
+                    'name' => 'required',
+                    'email' => 'required|email|unique:Consultants,id,:id',
+                    'password' => 'required|min:6',
+                ];
+                break;
+            case 'POST':
+                $rules = [
+                    'identification' => 'required|integer|min:5|unique:Consultants',
+                    'name' => 'required',
+                    'email' => 'required|email|unique:Consultants',
+                    'password' => 'required|min:6',
+                ];
+                break;
+
+        }
+        return $rules;
     }
 
     public function messages()
     {
         return [
-            'identification.min' => '',
-            'identification.unique' => '',
-            'name.required' => 'Se debe llenar todos los campos',
-            'email.required' => 'Se debe llenar todos los campos',
-            'email.email' => '',
-            'email.unique' => '',
-            'password.required' => 'Se debe llenar todos los campos',
-            'password.min' => 'Se debe llenar todos los campos',
+            'identification.required' => '',
+            'identification.integer' => 'La identificación debe ser numérica',
+            'identification.min' => 'La identificación debe tener por lo menos 5 caracteres',
+            'identification.unique' => 'La identificación ya esta en uso',
+            'name.required' => '',
+            'email.required' => '',
+            'email.email' => 'El correo electrónico es incorrecto',
+            'email.unique' => 'El correo electrónico ya está en uso',
+            'password.required' => '',
+            'password.min' => 'La contraseña debe tener al menos 6 caracteres',
         ];
     }
 }
