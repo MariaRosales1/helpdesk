@@ -40,7 +40,6 @@ class Consultant extends FormRequest
                     'password' => 'required|min:6'
                 ];
                 break;
-ss
         }
         return $rules;
     }
