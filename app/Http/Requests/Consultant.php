@@ -34,7 +34,7 @@ class Consultant extends FormRequest
                 break;
             case 'POST':
                 $rules = [
-                    'identification' => 'required|integer|min:5|unique:Consultants',
+                    'identification' => 'numeric|required|integer|min:5|unique:Consultants',
                     'name' => 'required',
                     'email' => 'required|email|unique:Consultants',
                     'password' => 'required|min:6',
