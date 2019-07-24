@@ -26,7 +26,7 @@ class Consultant extends FormRequest
         switch ($this->method()) {
             case 'PUT':
                 $rules = [
-                    'identification' => 'required|integer|min:5|unique:Consultants,id,:id',
+                    'identification' => 'required|min:0|integer|digits_between:5,15|unique:Consultants,id,:id',
                     'name' => 'required',
                     'email' => 'required|email|unique:Consultants,id,:id',
                     'password' => 'required|min:6',
@@ -34,13 +34,12 @@ class Consultant extends FormRequest
                 break;
             case 'POST':
                 $rules = [
-                    'identification' => 'numeric|required|integer|min:5|unique:Consultants',
+                    'identification' => 'required|min:0|integer|digits_between:5,15|unique:Consultants',
                     'name' => 'required',
                     'email' => 'required|email|unique:Consultants',
-                    'password' => 'required|min:6',
+                    'password' => 'required|min:6'
                 ];
                 break;
-
         }
         return $rules;
     }
@@ -48,15 +47,16 @@ class Consultant extends FormRequest
     public function messages()
     {
         return [
-            'identification.required' => '',
+            'identification.required' => 'La identificación es obligatoria',
             'identification.integer' => 'La identificación debe ser numérica',
-            'identification.min' => 'La identificación debe tener por lo menos 5 caracteres',
+            'digits_between'=> 'La identificación debe contener entre 5 y 15 digítos',
+            'identification.min' => 'La identificación no puede ser negativas',
             'identification.unique' => 'La identificación ya esta en uso',
-            'name.required' => '',
-            'email.required' => '',
+            'name.required' => 'El nombre es obligatorio',
+            'email.required' => 'El correo electronico es obligatorio',
             'email.email' => 'El correo electrónico es incorrecto',
             'email.unique' => 'El correo electrónico ya está en uso',
-            'password.required' => '',
+            'password.required' => 'La contraseña es obligatoria',
             'password.min' => 'La contraseña debe tener al menos 6 caracteres',
         ];
     }
