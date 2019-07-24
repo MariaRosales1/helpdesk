@@ -5,7 +5,11 @@
         <div class="alert alert-success"> {{session('mensaje')}}</div>
     @endif
 
-
+    @if(!$errors->isEmpty())
+        <div class="alert alert-danger container    ">
+            Se debe llenar todos los campos
+        </div>
+    @endif
 
     <div class="panel-body">
        
@@ -34,7 +38,7 @@
                     
                     <div class="form-group">
                         <input type="password" placeholder="Contraseña" class="form-input" name="password"  />
-                        {!! $errors->first('password', '<p class="help-block">:message</p>') !!}    
+                        {!! $errors->first('pasword', '<p class="help-block">:message</p>') !!}    
                     </div>
 
                     <button class="btn btn-primary" type="submit">Guardar Asesor</button>
