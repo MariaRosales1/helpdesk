@@ -41,6 +41,10 @@ class Consultant extends FormRequest
                 ];
                 break;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 87683ac... validaciones
 =======
 
 >>>>>>> parent of 87683ac... validaciones
