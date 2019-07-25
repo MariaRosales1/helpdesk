@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Consultant as ConsultantModel;
 use App\Http\Requests\Consultant;
-use Illuminate\Support\Facades\Hash;
 
 class ConsultantController extends Controller
 {
@@ -27,7 +26,6 @@ class ConsultantController extends Controller
     {
         $data = $request->validated();
         $newConsultant = new ConsultantModel;
-        $newConsultant-> password = Hash::make($request->input('password'));
         $newConsultant->fill($data);
         $newConsultant->save();
         return back()->with('mensaje','El asesor fue registrado exitosamente');
