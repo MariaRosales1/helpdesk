@@ -40,6 +40,10 @@ class Consultant extends FormRequest
                     'password' => 'required|min:6',
                 ];
                 break;
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 87683ac... validaciones
         }
         return $rules;
     }
