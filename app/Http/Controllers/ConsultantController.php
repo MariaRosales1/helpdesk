@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Consultant as ConsultantModel;
 use App\Http\Requests\Consultant;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ConsultantController extends Controller
 {
@@ -37,8 +38,14 @@ class ConsultantController extends Controller
     }
 
     public function edit($id)
-    {
-        $consultant= ConsultantModel::findOrFail($id);
+    {   
+        try {
+            $consultant= ConsultantModel::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e){
+            return redirect('consultants')->with('mensajeError','No se pudo encontrar el asesor a editar');  
+        }
+
         return view('consultants.edit', [
             'consultant' => $consultant,
         ]);
@@ -47,7 +54,13 @@ class ConsultantController extends Controller
     public function update(Consultant $request, $id)
     {
         $data = $request->validated();
-        $consultantUpdate = ConsultantModel::findOrFail($id);
+       
+        try {
+            $consultantUpdate= ConsultantModel::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e){
+            return redirect('consultants')->with('mensajeError','No se pudo encontrar el asesor a editar');  
+        }
         $consultantUpdate->fill($data);
         $consultantUpdate->save();
         return redirect('consultants')->with('mensaje','El asesor fue actualizado exitosamente');
@@ -55,7 +68,12 @@ class ConsultantController extends Controller
 
     public function destroy($id)
     {
+        try {
         $consultantDelete = ConsultantModel::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e){
+            return redirect('consultants')->with('mensajeError','No se pudo encontrar el asesor a eliminar');  
+        }
         $consultantDelete->delete();
         return redirect('consultants')->with('mensaje','Asesor Eliminado exitosamente');        
     }

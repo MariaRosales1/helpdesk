@@ -50,7 +50,7 @@ class Consultant extends FormRequest
             'identification.required' => 'La identificación es obligatoria',
             'identification.integer' => 'La identificación debe ser numérica',
             'digits_between'=> 'La identificación debe contener entre 5 y 15 digítos',
-            'identification.min' => 'La identificación no puede ser negativas',
+            'identification.min' => 'La identificación no puede ser negativa',
             'identification.unique' => 'La identificación ya esta en uso',
             'name.required' => 'El nombre es obligatorio',
             'email.required' => 'El correo electronico es obligatorio',
