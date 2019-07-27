@@ -26,20 +26,21 @@ class Consultant extends FormRequest
         switch ($this->method()) {
             case 'PUT':
                 $rules = [
-                    'identification' => 'required|min:0|integer|digits_between:5,15|unique:Consultants,id,:id',
+                    'identification' => 'required|min:0|integer|digits_between:5,15|unique:consultants,id,:id',
                     'name' => 'required',
-                    'email' => 'required|email|unique:Consultants,id,:id',
-                    'password' => 'required|min:6',
+                    'email' => 'required|email|unique:consultants,id,:id',
+                    'password' => 'min:6',
                 ];
                 break;
             case 'POST':
                 $rules = [
-                    'identification' => 'required|min:0|integer|digits_between:5,15|unique:Consultants',
+                    'identification' => 'required|min:0|integer|digits_between:5,15|unique:consultants',
                     'name' => 'required',
-                    'email' => 'required|email|unique:Consultants',
+                    'email' => 'required|email|unique:consultants',
                     'password' => 'required|min:6'
                 ];
                 break;
+
         }
         return $rules;
     }
