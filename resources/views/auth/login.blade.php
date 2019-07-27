@@ -1,5 +1,5 @@
 
-@section('content')
+@extends('layouts.app')  
 {{--  @extends('plantilla')  --}}
 
 @section('content')
