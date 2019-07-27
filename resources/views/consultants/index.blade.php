@@ -5,6 +5,12 @@
     @if(session('mensaje'))
         <div class="alert alert-success"> {{session('mensaje')}}</div>
     @endif
+    
+    
+    @if(session('mensajeError'))
+        <div class="alert alert-danger"> {{session('mensajeError')}}</div>
+    @endif
+    
     <div class="container">
         <table class="table">
             <thead>
