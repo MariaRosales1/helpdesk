@@ -10,15 +10,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Consultant extends Model
 {
     protected $guarded = ['password'];
-    protected $table='consultants';
  
     public function getAuthPassword()
     {
         return $this->this->password;
-    }
-    public function administrador()
-    {
-        return $this->hasOne('App\Models\Administrador');
     }
 }
 

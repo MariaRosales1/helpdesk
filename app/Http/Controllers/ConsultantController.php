@@ -34,7 +34,6 @@ class ConsultantController extends Controller
         $newConsultant-> password = Hash::make($request->input('password'));
         $newConsultant->fill($data);
         $newConsultant->save();
-        
         return back()->with('mensaje','El asesor fue registrado exitosamente');
     }
 
