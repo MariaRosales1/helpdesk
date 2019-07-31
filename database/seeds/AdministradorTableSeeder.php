@@ -11,9 +11,9 @@ class AdministradorTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('administrators')->insert([
-            'user_id' => 1,
-            'fecha_contratacion' => '29/07/2019',
+        DB::table('administradors')->insert([
+            'consultant_id' => 1,
+            'nombre' => 'Maria',
         ]);
 
 

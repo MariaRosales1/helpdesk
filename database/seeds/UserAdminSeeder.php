@@ -17,7 +17,6 @@ class UserAdminSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@unal.edu.co',
             'password' => Hash::make('123456789'),
-            'rol' => 'admin',
         ]);
     }
 }

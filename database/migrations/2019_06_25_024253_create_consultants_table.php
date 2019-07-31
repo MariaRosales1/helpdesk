@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdministratorsTable extends Migration
+class CreateConsultantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateAdministratorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('administrators', function (Blueprint $table) {
+        Schema::create('consultants', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fecha_contratacion');
-            $table->integer('user_id');
+            $table->string('identification');
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->string('rol')->default('asesor');;
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateAdministratorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('administrators');
+        Schema::dropIfExists('consultants');
     }
 }
