@@ -5,13 +5,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Administrador extends Model
+class Administrator extends Model
 {
-
+    
     protected $guarded = [];
 
-    public function consultant()
+    public function user()
     {
-        return $this->belongsTo('App\Models\Consultant');
+        return $this->belongsTo('App\User');
     }
+
 }

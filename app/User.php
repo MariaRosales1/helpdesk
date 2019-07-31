@@ -27,7 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
-
+    // public function consultant()
+    // {
+    //     return $this->hasOne('App\Models\Consultant');
+    // }
+    public function administrator()
+    {
+        return $this->hasOne('App\Models\Administrator');
+    }
     /**
      * The attributes that should be cast to native types.
      *
