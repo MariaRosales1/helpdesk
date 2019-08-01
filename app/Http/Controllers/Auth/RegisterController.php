@@ -44,7 +44,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -106,10 +106,10 @@ class RegisterController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, array(
-            'identification' => 'required|min:0|integer|digits_between:5,15',
+            'identification' => 'required|min:0|integer|digits_between:5,15|unique:users'.($id ? ",identification,$id": ''),
             'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:6'
+            'email' => 'required|email|unique:users'.($id ? ",email,$id": ''),
+            'password' => 'min:6',
         ));
        
         //$data=$this->validator($request->all())->validate();
