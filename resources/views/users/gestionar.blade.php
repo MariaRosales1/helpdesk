@@ -1,3 +1,4 @@
+
 @extends('plantilla')
 
 @section('seccion')
@@ -14,7 +15,7 @@
     <div class="container">
         <table class="table">
             <thead>
-                @if (count($consultants) != 0)
+                @if (count($users) != 0)
                     <tr>
                         <td scope="col">Identificación</td>
                         <td scope="col">Nombre</td>
@@ -24,14 +25,14 @@
                 @endif
         </thead>
         <tbody>
-            @forelse ($consultants as $consultant)
+            @forelse ($users as $user)
                 <tr>
-                    <td>{{$consultant->identification}}</td>
-                    <td>{{$consultant->name}}</td>
-                    <td>{{$consultant->email}}</td>
+                    <td>{{$user->identification}}</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
                     <td>                       
-                        <a href="{{route('consultants.edit',$consultant)}}" class="btn btn-warning btn-sm">Editar</a>                                
-                        <form action="{{route('consultants.destroy',$consultant)}}" method="POST" class="d-inline">
+                        <a href="{{route('users.edit',$user)}}" class="btn btn-warning btn-sm">Editar</a>                                
+                        <form action="{{route('users.destroy',$user)}}" method="POST" class="d-inline">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>                                
