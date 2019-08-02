@@ -9,6 +9,13 @@ use App\Http\Controllers\ConsultantController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\User as UserModel;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+//use Illuminate\Support\Facades\Request;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class RegisterController extends Controller
 {
@@ -39,7 +46,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -64,7 +71,7 @@ class RegisterController extends Controller
     {
 
         return Validator::make($data, [
-            'identification' => 'required|min:0|integer|digits_between:5,15|unique:users',
+            'identification' => 'required|min:0|integer|digits_between:5,15|unique:users,identification',
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6'
@@ -106,5 +113,81 @@ class RegisterController extends Controller
 
 
         return $usuario;
+    }
+
+    public function index()
+    {
+        $users = UserModel::all();
+
+        return view('users.gestionar', [
+            'users' => $users,
+        ]);
+    }
+
+    public function edit($id)
+    {   
+        try {
+            $user= UserModel::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e){
+            return redirect('users')->with('mensajeError','No se pudo encontrar el usuario a editar');  
+        }
+
+        return view('users.edit', [
+            'users' => $user,
+        ]);
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, array(
+            'identification' => 'required|min:0|integer|digits_between:5,15|unique:users'.($id ? ",identification,$id": ''),
+            'name' => 'required',
+            'email' => 'required|email|unique:users'.($id ? ",email,$id": ''),
+            'password' => 'min:6',
+        ));
+       
+        //$data=$this->validator($request->all())->validate();
+        try {
+            $userUpdate= UserModel::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e){
+            return redirect('users')->with('mensajeError','No se pudo encontrar el usuario a editar');  
+        }
+        
+        $userUpdate->update([
+            'identification' => $request['identification'],
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return redirect('users')->with('mensaje','El usuario fue actualizado exitosamente');
+    }
+
+
+    public function destroy($id)
+    {
+        try {
+        $userDelete = UserModel::findOrFail($id);
+        }
+        catch (ModelNotFoundException $e){
+            return redirect('users')->with('mensajeError','No se pudo encontrar el usuario a eliminar');  
+        }
+        $userDelete->delete();
+        return redirect('users')->with('mensaje','usuario Eliminado exitosamente');        
+    }
+
+    
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        //$this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 }

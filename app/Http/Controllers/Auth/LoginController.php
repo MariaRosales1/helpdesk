@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
+use App\User as UserModel;
 class LoginController extends Controller
 {
     /*
@@ -37,4 +38,25 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        
+        if($user->rol == 'admin' ){
+            return redirect('/users');
+        }else {
+            return redirect('/home');
+        }
+
+        // if( $userUpdate->where('rol',"asesor")){
+        //     return redirect('/users');
+        // }
+        // if($user->where('rol','admin')){
+        //     return redirect('/consultants');
+        // }if($user->where('rol','asesor')){
+        //     return redirect('/users');
+        // }
+    }
 }
+
+
