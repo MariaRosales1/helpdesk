@@ -15,5 +15,10 @@ class Consultant extends Model
     {
         return $this->this->password;
     }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }
 

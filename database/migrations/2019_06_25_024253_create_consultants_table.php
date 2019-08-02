@@ -15,11 +15,9 @@ class CreateConsultantsTable extends Migration
     {
         Schema::create('consultants', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('identification');
-            $table->string('name');
-            $table->string('email');
-            $table->string('password');
-            $table->string('rol')->default('asesor');;
+            $table->string('conected');
+            $table->string('number_ticket');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
