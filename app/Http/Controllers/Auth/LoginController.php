@@ -41,21 +41,12 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        
-        if($user->rol == 'admin' ){
-            return redirect('/users');
+        define('ADMIN', 'admin');
+        if($user->rol == ADMIN ){
+            return redirect('/home');
         }else {
             return redirect('/home');
         }
-
-        // if( $userUpdate->where('rol',"asesor")){
-        //     return redirect('/users');
-        // }
-        // if($user->where('rol','admin')){
-        //     return redirect('/consultants');
-        // }if($user->where('rol','asesor')){
-        //     return redirect('/users');
-        // }
     }
 }
 
