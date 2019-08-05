@@ -47,27 +47,8 @@
                             href="{{route('timeservice.create')}}">Ingresar Horario</a>
                     </li>
                     <li class="nav-item mx-0 mx-lg-1">
-                        @guest
-                    <li class="nav-item">
-                        <a style="color:white; font-weight:bold;"
-                            class="nav-link nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                            href="{{ route('login') }}">{{ __('Iniciar Sección') }}</a>
-                    </li>
-                    @else
-                    <li class="nav-item dropdown">
-                        <a style="color:white; font-weight:bold;" id="navbarDropdown"
-                            class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
-                            href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
 
-
-
-
-
-
-                         @guest
+                    @guest  
                             <li class="nav-item">
                                 <a style="color:white; font-weight:bold;" class="nav-link nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
@@ -89,7 +70,7 @@
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Cerrar Sesión') }}
                             </a>
-
+                        
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
