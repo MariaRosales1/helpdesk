@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\User as UserModel;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-//use Illuminate\Support\Facades\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,33 +54,22 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    // public function register(Request $request)
-    // {
-    //     $this->validator($request->all())->validate();
-
-    //     event(new Registered($user = $this->create($request->all())));
-
-    //     //$this->guard()->login($user);
-
-    //     return $this->registered($request, $user)
-    //                     ?: redirect($this->redirectPath());
-    // }
 
     protected function validator(array $data)
     {
-
         return Validator::make($data, [
             'identification' => 'required|min:0|integer|digits_between:5,15|unique:users,identification',
-            'name' => 'required',
+            'name' => 'required|between:3,30',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6'
         ], [
             'identification.required' => 'La identificación es obligatoria',
-            'identification.integer' => 'La identificación debe ser numérica',
-            'digits_between'=> 'La identificación debe contener entre 5 y 15 digítos',
             'identification.min' => 'La identificación no puede ser negativa',
+            'identification.integer' => 'La identificación debe ser numérica',
+            'identification.digits_between' => 'La identificación debe contener entre 5 y 15 digítos',
             'identification.unique' => 'La identificación ya esta en uso',
             'name.required' => 'El nombre es obligatorio',
+            'name.between' => 'El nombre debe contener entre 3 y 30 digítos',               
             'email.required' => 'El correo electronico es obligatorio',
             'email.email' => 'El correo electrónico es incorrecto',
             'email.unique' => 'El correo electrónico ya está en uso',
@@ -110,7 +98,6 @@ class RegisterController extends Controller
             'conected' => 'desconectado',
             'user_id' => $usuario->id,
         ]);
-
 
         return $usuario;
     }
@@ -141,14 +128,26 @@ class RegisterController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, array(
+            Validator::make($request->all(), [
             'identification' => 'required|min:0|integer|digits_between:5,15|unique:users'.($id ? ",identification,$id": ''),
-            'name' => 'required',
+            'name' => 'required|between:3,30',
             'email' => 'required|email|unique:users'.($id ? ",email,$id": ''),
-            'password' => 'min:6',
-        ));
-       
-        //$data=$this->validator($request->all())->validate();
+            'password' => 'required|min:6'
+        ], [
+            'identification.required' => 'La identificación es obligatoria',
+            'identification.min' => 'La identificación no puede ser negativa',
+            'identification.integer' => 'La identificación debe ser numérica',
+            'identification.digits_between' => 'La identificación debe contener entre 5 y 15 digítos',
+            'identification.unique' => 'La identificación ya esta en uso',
+            'name.required' => 'El nombre es obligatorio',
+            'name.between' => 'El nombre debe contener entre 3 y 30 digítos',                      
+            'email.required' => 'El correo electronico es obligatorio',
+            'email.email' => 'El correo electrónico es incorrecto',
+            'email.unique' => 'El correo electrónico ya está en uso',
+            'password.required' => 'La contraseña es obligatoria',
+            'password.min' => 'La contraseña debe tener al menos 6 caracteres',
+        ])->validate();
+
         try {
             $userUpdate= UserModel::findOrFail($id);
         }
@@ -184,10 +183,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-
-        //$this->guard()->login($user);
-
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+        
+        return back()->with('mensaje','El asesor fue registrado exitosamente');
     }
 }
