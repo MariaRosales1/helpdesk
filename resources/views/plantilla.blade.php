@@ -50,7 +50,7 @@
 
                          @guest
                             <li class="nav-item">
-                                <a style="color:white; font-weight:bold;" class="nav-link nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('login') }}">{{ __('Iniciar Sección') }}</a>
+                                <a style="color:white; font-weight:bold;" class="nav-link nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
                             {{--  @if (Route::has('register'))
                                 <li class="nav-item">

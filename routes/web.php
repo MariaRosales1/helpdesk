@@ -1,9 +1,9 @@
-
 <?php
 
-Route::resource('consultants', 'ConsultantController');
+ROute::resource('consultants', 'ConsultantController');
 
-Route::resource('timeservice', 'TimeServiceController');
+Route::resource('timeservice', 'TimeServiceController')
+    ->only(['create', 'store']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,7 +17,6 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
-    
 
 Route::get('/home', 'HomeController@index')->name('home');
 
