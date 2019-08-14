@@ -30,27 +30,27 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a style="color:white; font-weight:bold;" class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Asesores
+                        <a style="color:white; font-weight:bold;"
+                            class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                            href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Asesores
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{route('consultants.index')}}">Gestionar</a>
-                          <a class="dropdown-item" href="{{route('consultants.create')}}">Registrar</a>
+                            <a class="dropdown-item" href="{{route('users.index')}}">Gestionar</a>
+                            <a class="dropdown-item" href="{{route('register')}}">Registrar</a>
                         </div>
-                      </li>
+                    </li>
                     <li class="nav-item mx-0 mx-lg-1">
                         <a style="color:white; font-weight:bold;"
-                            class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"  href="{{route('timeservice.create')}}">Ingresar Horario</a>
+                            class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                            href="{{route('timeservice.create')}}">Ingresar Horario</a>
                     </li>
                     <li class="nav-item mx-0 mx-lg-1">
 
-
-
-
-
-                         @guest
+                    @guest  
                             <li class="nav-item">
-                                <a style="color:white; font-weight:bold;" class="nav-link nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('login') }}">{{ __('Iniciar Sección') }}</a>
+                                <a style="color:white; font-weight:bold;" class="nav-link nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
                             {{--  @if (Route::has('register'))
                                 <li class="nav-item">
@@ -66,22 +66,17 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
+
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar Sesión') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-
-
-
-
-
-
+                                {{ __('Cerrar Sesión') }}
+                            </a>
+                        
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endguest
                     </li>
                 </ul>
             </div>
@@ -91,7 +86,6 @@
     <!-- Masthead -->
     <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
-
 
             <!-- Icon Divider -->
             <div class="divider-custom divider-light">
@@ -104,8 +98,6 @@
 
             <!-- Masthead Subheading -->
             <p class="masthead-subheading font-weight-light mb-0">Compromiso - Calidad - Mejores soluciones</p>
-
-
     </header>
 
     </div>
@@ -113,11 +105,7 @@
     <div style="margin-top:5em ;" class="container">
         <center>@yield('seccion') </center>
     </div>
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

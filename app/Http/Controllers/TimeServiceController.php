@@ -5,51 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TimeService as TimeServiceModel;
 use App\Http\Requests\TimeService;
-
+use Illuminate\Support\Facades\DB;
 
 class TimeServiceController extends Controller
 {
-    public function index()
-    {
-        $timeService = TimeServiceModel::all();
-
-        return view('timeservice.index', [
-            'timeServices' => $timeService,
-        ]);
-    }
 
     public function create()
     {
-        return view('timeService.create');
+        $timeService = TimeServiceModel::all()->first();
+
+        return view('timeService.create', [
+            'timeService' => $timeService,
+        ]);
     }
 
     public function store(TimeService $request)
     {
         $data = $request->validated();
-        $newTimeService = new TimeServiceModel;
+
+        DB::table('time_services')->delete();
+
+        $newTimeService = new TimeServiceModel();
         $newTimeService->fill($data);
-        $newTimeService->save();  
+        $newTimeService->save();
+
         return back()->with('mensaje','Horario ingresado exitosamente');
-    }
-    
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }
