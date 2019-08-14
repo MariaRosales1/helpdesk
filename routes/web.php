@@ -1,11 +1,14 @@
 
 <?php
 
+use App\Events\WebsocketEvent;
+
 Route::resource('consultants', 'ConsultantController');
 
 Route::resource('timeservice', 'TimeServiceController');
 
 Route::get('/', function () {
+    broadcast(new WebsocketEvent('some data'));
     return view('welcome');
 });
 
@@ -19,7 +22,7 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
     
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index', )->name('home');
 
 Route::resource('users', 'auth\RegisterController');
 
