@@ -25,10 +25,10 @@ class TimeServiceController extends Controller
 
         DB::table('time_services')->delete();
 
-        $newTimeService = new TimeServiceModel();
+        $newTimeService = new TimeServiceModel();   
         $newTimeService->fill($data);
         $newTimeService->save();
 
-        return back()->with('mensaje','Horario ingresado exitosamente');
+        return back()->with('mensaje','Horario actualizado exitosamente');
     }
 }

@@ -36,14 +36,14 @@ class TimeService extends FormRequest
     public function messages()
     {
         return [
-            'diaInicio.required' => 'El campo día de inicio es requerido',
+            'diaInicio.required' => 'El día de inicio es obligatorio',
             'diaInicio.in' => 'El día de inicio debe ser uno de: LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO',
-            'diaFin.required' => 'El campo día de fin es requerido',
-            'diaFin.in' => 'El día de fin debe ser uno de: LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO',
-            'horaInicio.required' => 'La hora de inicio es requerida',
-            'horaInicio.date_format' => 'La hora de inicio debe ser del tip 10:10 AM',
-            'horaFin.required' => 'La hora de fin es requerida',
-            'horaFin.date_format' => 'La hora de fin debe ser del tip 10:10 PM',
+            'diaFin.required' => 'El dia final es obligatorio',
+            'diaFin.in' => 'v LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO',
+            'horaInicio.required' => 'La hora de inicio es obligatorio',
+            'horaInicio.date_format' => 'La hora de inicio debe ser del tipo 10:10 AM',
+            'horaFin.required' => 'La hora de final es obligatorio',
+            'horaFin.date_format' => 'La hora de fin debe ser del tipo 10:10 PM',
         ];
     }
 }

@@ -19,14 +19,16 @@ Route::group(['middleware' => 'permissionAdmin'], function () {
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('register', 'Auth\RegisterController@register');
     //users
-    Route::resource('users', 'auth\RegisterController')->middleware('permissionAdmin');
+    Route::resource('users', 'auth\RegisterController');
     //TimeService  
     Route::resource('timeservice', 'TimeServiceController')
     ->only(['create', 'store']);
+
+    Route::resource('consultants', 'ConsultantController');
 });
 
 
 Route::group(['middleware' => 'permissionConsultant'], function () {
-    
+
 });
 
