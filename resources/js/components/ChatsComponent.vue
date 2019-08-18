@@ -12,7 +12,7 @@
                     </ul>
                 </div>
                 <input 
-                        @keyup.enter="sendMessage"
+                        @keyup.alt.67="sendMessage"
                         v-model="newMessage"
                         type="text"
                         name="message"
