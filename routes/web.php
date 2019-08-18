@@ -33,8 +33,4 @@ Route::group(['middleware' => 'permissionAdmin'], function () {
 Route::group(['middleware' => 'permissionConsultant'], function () {
     
 });
- 
 
-Route::get('/chats', 'ChatController@index');
-Route::get('/messages', 'ChatController@fetchMessages');
-Route::get('/messages', 'ChatController@sendMessage');
