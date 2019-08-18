@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class TimeService extends FormRequest
 {
@@ -14,8 +13,7 @@ class TimeService extends FormRequest
      */
     public function authorize()
     {
-        $user = Auth::user();
-        return $user && $user->rol == 'admin';
+        return true;
     }
 
     /**
@@ -25,25 +23,21 @@ class TimeService extends FormRequest
      */
     public function rules()
     {
-        return [
-            'diaInicio' => 'required|in:LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO',
-            'diaFin' => 'required|in:LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO',
-            'horaInicio' => 'required|date_format:H:i',
-            'horaFin' => 'required|date_format:H:i',
+        return [            
+            'diaInicio' => 'required',
+            'diaFin' => 'required',
+            'horaInicio' => 'required',
+            'horaFin' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'diaInicio.required' => 'El campo día de inicio es requerido',
-            'diaInicio.in' => 'El día de inicio debe ser uno de: LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO',
-            'diaFin.required' => 'El campo día de fin es requerido',
-            'diaFin.in' => 'El día de fin debe ser uno de: LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO',
-            'horaInicio.required' => 'La hora de inicio es requerida',
-            'horaInicio.date_format' => 'La hora de inicio debe ser del tip 10:10 AM',
-            'horaFin.required' => 'La hora de fin es requerida',
-            'horaFin.date_format' => 'La hora de fin debe ser del tip 10:10 PM',
+            'diaInicio.required' => 'Se debe llenar todos los campos',
+            'diaFin.required' => 'Se debe llenar todos los campos',
+            'horaInicio.required' => 'Se debe llenar todos los campos',
+            'horaFin.required' => 'Se debe llenar todos los campos',
         ];
     }
 }
