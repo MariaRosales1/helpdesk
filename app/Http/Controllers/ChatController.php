@@ -21,7 +21,7 @@ class ChatController extends Controller
     }
 
     public function sendMessage(Request $request){
-        console.log("uasdfasdfasdfjl jua jaua jua ");
+        
 
         $message = auth()->user()-> messages()->create([
             'message' => $request -> message]);
