@@ -7,11 +7,14 @@
     @endif
 
     @if(!$errors->isEmpty())
-        <div class="alert alert-danger container    ">
+        <div class="alert alert-danger container">
             Se debe llenar todos los campos
         </div>
     @endif
 
+    @if(session('mensajeError'))
+        <div class="alert alert-danger"> {{session('mensajeError')}}</div>
+    @endif
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-lg-12" >
@@ -39,11 +42,11 @@
                     </div>
                     
                     <div class="form-group">
-                        <input type="password" placeholder="Contraseña" class="form-input" name="password"  value="{{$consultant->password}}"  />
+                        <input type="password" placeholder="Contraseña" class="form-input" name="password" />
                         {!! $errors->first('password', '<p class="help-block">:message</p>') !!}    
                     </div>
 
-                    <button class="btn btn-primary" type="submit">Editar Asesor</button>
+                    <button class="btn btn-primary" type="submit">Actualizar</button>
                 </form>
             </div>
         </div>
