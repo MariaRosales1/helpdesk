@@ -15,10 +15,10 @@ class CreateTimeServicesTable extends Migration
     {
         Schema::create('time_services', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('diaInicio');
-            $table->string('diaFin');
-            $table->string('horaInicio');
-            $table->string('horaFin');
+            $table->string('start_time');
+            $table->string('final_time');
+            $table->string('start_day');
+            $table->string('final_day');
             $table->timestamps();
         });
     }

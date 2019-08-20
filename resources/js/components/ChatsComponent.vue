@@ -80,8 +80,14 @@
                     user: this.user,
                     message: this.newMessage
                 });
-                axios.defaults.headers.post['X-CSRF-Token'] = 'csrf_token()';
-                axios.post('messages', { message: this.newMessage });
+                // axios.defaults.headers.post['X-CSRF-Token'] = 'csrf_token()';
+                axios.post('messages', { message: this.newMessage })
+                 .then(function (response) {
+                    currentObj.output = response.data;
+                })
+                .catch(function (error) {
+                    currentObj.output = error;
+                });
                 
                 this.newMessage='';
             }
