@@ -26,24 +26,24 @@ class TimeService extends FormRequest
     public function rules()
     {
         return [
-            'diaInicio' => 'required|in:LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO',
-            'diaFin' => 'required|in:LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO',
-            'horaInicio' => 'required|date_format:H:i',
-            'horaFin' => 'required|date_format:H:i',
+            'start_day' => 'required|in:LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO',
+            'final_day' => 'required|in:LUNES,MARTES,MIERCOLES,JUEVES,VIERNES,SABADO,DOMINGO',
+            'start_time' => 'required|date_format:H:i',
+            'final_time' => 'required|date_format:H:i',
         ];
     }
 
     public function messages()
     {
         return [
-            'diaInicio.required' => 'El día de inicio es obligatorio',
-            'diaInicio.in' => 'El día de inicio debe ser uno de: LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO',
-            'diaFin.required' => 'El dia final es obligatorio',
-            'diaFin.in' => 'v LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO',
-            'horaInicio.required' => 'La hora de inicio es obligatorio',
-            'horaInicio.date_format' => 'La hora de inicio debe ser del tipo 10:10 AM',
-            'horaFin.required' => 'La hora de final es obligatorio',
-            'horaFin.date_format' => 'La hora de fin debe ser del tipo 10:10 PM',
+            'start_day.required' => 'El campo día de inicio es requerido',
+            'start_day.in' => 'El día de inicio debe ser uno de: LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO',
+            'final_day.required' => 'El campo día de fin es requerido',
+            'final_day.in' => 'El día de fin debe ser uno de: LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO',
+            'start_time.required' => 'La hora de inicio es requerida',
+            'start_time.date_format' => 'La hora de inicio debe ser del tip 10:10 AM',
+            'final_time.required' => 'La hora de fin es requerida',
+            'final_time.date_format' => 'La hora de fin debe ser del tip 10:10 PM',
         ];
     }
 }
