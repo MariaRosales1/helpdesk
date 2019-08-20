@@ -18,9 +18,10 @@ class UserAdminSeeder extends Seeder
 
         if (!$adminUser) {
             DB::table('users')->insert([
-                'identification' => Str::random(9),
+                'identification' => '97082918330',
                 'name' => 'admin',
                 'email' => 'admin@unal.edu.co',
+                'rol' => 'admin',
                 'password' => Hash::make('123456789'),
             ]);
         }

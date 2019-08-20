@@ -1777,6 +1777,7 @@ __webpack_require__.r(__webpack_exports__);
         user: this.user,
         message: this.newMessage
       });
+      axios.defaults.headers.post['X-CSRF-Token'] = 'csrf_token()';
       axios.post('messages', {
         message: this.newMessage
       });
@@ -47407,7 +47408,15 @@ var render = function() {
           },
           domProps: { value: _vm.newMessage },
           on: {
-            click: _vm.sendMessage,
+            keyup: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              return _vm.sendMessage($event)
+            },
             input: function($event) {
               if ($event.target.composing) {
                 return

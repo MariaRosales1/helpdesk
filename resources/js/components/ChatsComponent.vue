@@ -12,7 +12,7 @@
                     </ul>
                 </div>
                 <input 
-                        @click="sendMessage"
+                        @keyup.enter="sendMessage"
                         v-model="newMessage"
                         type="text"
                         name="message"
@@ -80,7 +80,9 @@
                     user: this.user,
                     message: this.newMessage
                 });
+                axios.defaults.headers.post['X-CSRF-Token'] = 'csrf_token()';
                 axios.post('messages', { message: this.newMessage });
+                
                 this.newMessage='';
             }
         } 
