@@ -3,16 +3,16 @@
         <div class="col-8">
             <div class="card card-default">
                 <div class="class card-header">Messages </div>
-                <div class="card-body p-0">
+                <div  id="app" class="card-body p-0">
                     <ul class="list-unstyled" style="height:300px; overflow-y:scroll">
-                        <li class="p-2" v-for= "(message, index) in messages" :key="index">
+                        <li class="p-2" v-for="(message, index) in messages" :key="index">
                             <strong>{{message.user.name}}</strong>
                             {{message.message}}
                         </li>
                     </ul>
                 </div>
                 <input 
-                        @keyup.enter="sendMessage"
+                        @click="sendMessage"
                         v-model="newMessage"
                         type="text"
                         name="message"

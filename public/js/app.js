@@ -47369,7 +47369,7 @@ var render = function() {
       _c("div", { staticClass: "card card-default" }, [
         _c("div", { staticClass: "class card-header" }, [_vm._v("Messages ")]),
         _vm._v(" "),
-        _c("div", { staticClass: "card-body p-0" }, [
+        _c("div", { staticClass: "card-body p-0", attrs: { id: "app" } }, [
           _c(
             "ul",
             {
@@ -47407,15 +47407,7 @@ var render = function() {
           },
           domProps: { value: _vm.newMessage },
           on: {
-            keyup: function($event) {
-              if (!$event.type.indexOf("key") && $event.keyCode !== 67) {
-                return null
-              }
-              if (!$event.altKey) {
-                return null
-              }
-              return _vm.sendMessage($event)
-            },
+            click: _vm.sendMessage,
             input: function($event) {
               if ($event.target.composing) {
                 return
