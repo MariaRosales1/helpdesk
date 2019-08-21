@@ -32,3 +32,6 @@ Route::group(['middleware' => 'permissionConsultant'], function () {
 
 });
 
+Route::get('/contacts','ContactsController@get');
+Route::get('conversation/{id}','ContactsController@getMessageFor');
+
