@@ -21,5 +21,14 @@ class ContactsController extends Controller
 
         return response()->json($messages);
     }
+
+    public function send(Request $request){    
+        $message = Message::create([
+            'from' => Auth()->id(),
+            'to' => $request->contact_id,
+            'text' => $request->text,
+        ]);
+        return response()->json($message);
+    }
 }
 
