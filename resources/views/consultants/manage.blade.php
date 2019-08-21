@@ -6,7 +6,6 @@
         <div class="alert alert-success"> {{session('mensaje')}}</div>
     @endif
     
-    
     @if(session('mensajeError'))
         <div class="alert alert-danger"> {{session('mensajeError')}}</div>
     @endif
@@ -35,8 +34,7 @@
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>                                
-                        </form>
-                        
+                        </form>               
                     </td>    
                 </tr>
                 @empty

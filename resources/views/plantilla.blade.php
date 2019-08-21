@@ -37,7 +37,7 @@
                             Asesores
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('users.index')}}">Gestionar</a>
+                            <a class="dropdown-item" href="{{route('consultants.index')}}">Gestionar</a>
                             <a class="dropdown-item" href="{{route('register')}}">Registrar</a>
                         </div>
                     </li>
