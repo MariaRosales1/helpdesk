@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//Routes for customer
+Route::get('registerCustomer', 'CustomerController@index');
+Route::post('registerCustomer', 'CustomerController@store');
+Route::get('chatCustomer', 'CustomerController@chat');
 
 // Auth::routes();
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -18,7 +22,7 @@ Route::group(['middleware' => 'permissionAdmin'], function () {
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('register', 'Auth\RegisterController@register');
     //users
-    Route::resource('users', 'auth\RegisterController');
+    //Route::resource('users', 'auth\RegisterController');
     //TimeService  
     Route::resource('timeservice', 'TimeServiceController')->only(['create', 'store']);
 
