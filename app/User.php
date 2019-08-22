@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Company;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,5 +41,9 @@ class User extends Authenticatable
     public function consultant()
     {
         return $this->hasOne('App\Models\Consultant');
+    }
+
+    public function company() {
+        return $this->belongsTo(Company::class);
     }
 }
