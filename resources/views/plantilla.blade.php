@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+      
     <title>HelpDesk</title>
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 </head>
@@ -37,7 +37,7 @@
                             Asesores
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{route('users.index')}}">Gestionar</a>
+                            <a class="dropdown-item" href="{{route('consultants.index')}}">Gestionar</a>
                             <a class="dropdown-item" href="{{route('register')}}">Registrar</a>
                         </div>
                     </li>
