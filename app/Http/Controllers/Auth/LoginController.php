@@ -48,6 +48,14 @@ class LoginController extends Controller
             return redirect('/home');
         }
     }
+    
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
+    }
 }
 
 
