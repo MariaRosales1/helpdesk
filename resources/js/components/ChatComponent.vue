@@ -25,6 +25,11 @@
         },
 
         mounted() {
+            Echo.private(`messages.${this.user.id}`)
+                .listen('NewMessage',(e) =>{
+                    this.hanleIncoming(e.message)
+                });
+
             console.log(this.user);
             axios.get('/contacts')
                 .then((response) => {                    
@@ -32,7 +37,7 @@
                     console.log(response.data);
                     console.log('fin');
                     this.contacts = response.data;
-                })
+                });
             console.log('Component mounted.')
         },
         methods:{
@@ -45,7 +50,15 @@
             },
             saveNewMessage(text){
                 this.messages.push(text);
+            },
+            hanleIncoming(message){
+                if(this.selectedContact && message.from == this.selectedContact.id){
+                    this.saveNewMessage(message); 
+                    return;               
+                }
+                alert(message.text);
             }
+            
         },
         components: {Conversation, ContactList}
     }

@@ -23,8 +23,8 @@
         },
         methods: {
             sendMessage(text){
-                //console.log(text);
                 if(!this.contact){
+                    console.log(text);
                     return;
                 }
 
