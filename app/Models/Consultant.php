@@ -19,6 +19,11 @@ class Consultant extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
 
 }
 
