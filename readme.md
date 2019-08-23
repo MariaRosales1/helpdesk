@@ -20,7 +20,7 @@ user@host:/tmp/$ git clone https://github.com/MariaRosales1/helpdesk.git
 Entrar en el directorio de la app ejecutar:
 ```console 
 user@host:/tmp$ cd helpdesk/
-user@host:/tmp/helpdesk$ composer update && composer install && composer dump-autoload
+user@host:/tmp/helpdesk$ composer update && composer install && composer dump-autoload  && npm install &&  composer require pusher/pusher-php-server
 ```
 Cear archivo de variables de entorno:
 ```console
