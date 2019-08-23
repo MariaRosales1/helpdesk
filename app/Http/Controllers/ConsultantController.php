@@ -47,7 +47,7 @@ class ConsultantController extends Controller
         try {
             $consultant = UserModel::findOrFail($id);
         } catch (ModelNotFoundException $e) {
-            return view('consultants')->with('mensajeError', 'No se pudo encontrar el asesor a editar');
+            return redirect('consultants')->with('mensajeError', 'No se pudo encontrar el asesor a editar');
         }
         return view('consultants.edit', [
             'consultant' => $consultant,
@@ -74,7 +74,7 @@ class ConsultantController extends Controller
             'identification.digits_between' => 'La identificación debe contener entre 5 y 15 digítos',
             'identification.unique' => 'La identificación ya está en uso',
             'name.required' => 'El nombre es obligatorio',
-            -'name.between' => 'El nombre debe contener entre 3 y 30 caracteres',
+            'name.between' => 'El nombre debe contener entre 3 y 30 caracteres',
             'email.required' => 'El correo electrónico es obligatorio',
             'email.email' => 'El correo electrónico es incorrecto',
             'email.unique' => 'El correo electrónico ya está en uso',

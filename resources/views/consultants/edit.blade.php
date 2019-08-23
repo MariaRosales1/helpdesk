@@ -6,11 +6,11 @@
         <div class="alert alert-success"> {{session('mensaje')}}</div>
     @endif
 
-    @if(!$errors->isEmpty())
+    {{--  @if(!$errors->isEmpty())
         <div class="alert alert-danger container">
             Se debe llenar todos los campos
         </div>
-    @endif
+    @endif  --}}
 
     @if(session('mensajeError'))
         <div class="alert alert-danger"> {{session('mensajeError')}}</div>

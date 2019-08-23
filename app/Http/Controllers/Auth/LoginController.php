@@ -72,7 +72,7 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?:  redirect('calificar');
+        return $this->loggedOut($request) ?:  redirect('rate/{{$user}}');
 
         // return $this->loggedOut($request) ?:  view('prueba',[
         //     'user' => $user,
