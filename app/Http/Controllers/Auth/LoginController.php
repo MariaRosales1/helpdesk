@@ -43,7 +43,7 @@ class LoginController extends Controller
     {
         define('ADMIN', 'admin');
         if($user->rol == ADMIN ){
-            return redirect('/users');
+            return redirect('/consultants');
         }else {
             return redirect('/home');
         }
