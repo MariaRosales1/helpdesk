@@ -32,7 +32,7 @@ class Customer extends FormRequest
     {
         return [
             'name.required' => 'El nombre es obligatorio',
-            'email.required' => 'El campo correo es obligatorio',
+            'email.required' => 'El correo es obligatorio',
             'email.email' => 'El campo correo es incorrecto',
         ];
     }

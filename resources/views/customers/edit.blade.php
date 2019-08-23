@@ -122,6 +122,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                     <input type="text" class="form-control" name="name" id="name"  placeholder="Tu nombre"/>
+                                    {!! $errors->first('name', '<p class="help-block">:message</p>') !!}  
                                 </div>
                             </div>
                         </div>
@@ -132,6 +133,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                     <input type="text" class="form-control" name="email" id="email"  placeholder="Tu correo"/>
+                                    {!! $errors->first('email', '<p class="help-block">:message</p>') !!}  
                                 </div>
                             </div>
                         </div>
