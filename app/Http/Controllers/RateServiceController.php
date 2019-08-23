@@ -8,10 +8,8 @@ use Illuminate\Http\Request;
 
 class RateServiceController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $id = 1;
-
         return view('service.grade', compact('id'));
     }
 

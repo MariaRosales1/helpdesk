@@ -41,5 +41,5 @@ Route::get('conversation/{id}','MessagesController@getMessageFor');
 Route::post('conversation/send','MessagesController@send');
 Route::get('/consultantassigned','MessagesController@assigned');
 
-Route::get('/rate', 'RateServiceController@index');
+Route::get('/rate/{id}', 'RateServiceController@index');
 Route::post('/rate/{id}', 'RateServiceController@rate');
