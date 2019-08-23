@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'identification.digits_between' => 'La identificación debe contener entre 5 y 15 digítos',
             'identification.unique' => 'La identificación ya esta en uso',
             'name.required' => 'El nombre es obligatorio',
-            'name.between' => 'El nombre debe contener entre 3 y 30 digítos',               
+            'name.between' => 'El nombre debe contener entre 3 y 30 caracteres',               
             'email.required' => 'El correo electronico es obligatorio',
             'email.email' => 'El correo electrónico es incorrecto',
             'email.unique' => 'El correo electrónico ya está en uso',
@@ -91,6 +91,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'rol' => 'consultant'
         ]);
 
         Consultant::create([

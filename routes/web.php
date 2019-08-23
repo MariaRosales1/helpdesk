@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,14 +31,19 @@ Route::group(['middleware' => 'permissionAdmin'], function () {
     //users
     //  Route::resource('users', 'auth\RegisterController');
     //TimeService  
-    Route::resource('timeservice', 'TimeServiceController')
-    ->only(['create', 'store']);
+    Route::resource('timeservice', 'TimeServiceController')->only(['create', 'store']);
 
     Route::resource('consultants', 'ConsultantController');
-});
 
+    Route::get('company', 'CompanyController@edit');
+    Route::patch('company/{id}', 'CompanyController@update');
+});
 
 Route::group(['middleware' => 'permissionConsultant'], function () {
 
 });
 
+Route::get('/contacts','MessagesController@get');
+Route::get('conversation/{id}','MessagesController@getMessageFor');
+Route::post('conversation/send','MessagesController@send');
+Route::get('/consultantassigned','MessagesController@assigned');
