@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RateServiceRequest;
-use App\Ticket;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class RateServiceController extends Controller

@@ -21,7 +21,8 @@ class CreateTicketsTable extends Migration
             $table->date('closing_date');
             $table->text('note');
             $table->text('comment')->nullable();
-            $table->integer('score');
+            $table->integer('score')->default('0');
+            $table->string('consultant_id');
             $table->timestamps();
         });
     }
