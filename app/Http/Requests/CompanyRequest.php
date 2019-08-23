@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Customer extends FormRequest
+class CompanyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,20 @@ class Customer extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email'
+            'nit' => 'required|string|regex:/^\d{5,30}$/',
+            'name' => 'required|string|min:2|max:20',
         ];
     }
+
     public function messages()
     {
         return [
             'name.required' => 'El nombre es obligatorio',
-            'email.required' => 'El correo es obligatorio',
-            'email.email' => 'El campo correo es incorrecto',
+            'name.min' => 'El nombre debe tener entre 2 y 20 caracteres',
+            'name.max' => 'El nombre debe tener entre 2 y 20 caracteres',
+            'nit.required' => 'El NIT es obligatorio',
+            'nit.regex' => 'El NIT debe tener entre 5 y 30 caracteres y ser digitos solo digitos',
+            'nit.min' => 'El NIT no pude ser negativo',
         ];
     }
 }

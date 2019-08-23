@@ -43,10 +43,18 @@ class LoginController extends Controller
     {
         define('ADMIN', 'admin');
         if($user->rol == ADMIN ){
-            return redirect('/users');
+            return redirect('/consultants');
         }else {
             return redirect('/home');
         }
+    }
+    
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
     }
 }
 
