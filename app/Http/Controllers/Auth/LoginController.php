@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\User as UserModel;
+use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
     /*
@@ -56,6 +58,36 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
     }
+
+
+    public function logout(Request $request)
+    {
+        $user = Auth::user()->id;    
+        define('CUSTOMER', 'customer');
+        if( Auth::user()->rol  == CUSTOMER ){
+            $userDelete = UserModel::findOrFail(Auth::id());
+            $userDelete->delete();   
+            
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?:  redirect('calificar');
+
+        // return $this->loggedOut($request) ?:  view('prueba',[
+        //     'user' => $user,
+        // ]); 
+        }
+
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/');
+    }
+
+
+
 }
 
 
