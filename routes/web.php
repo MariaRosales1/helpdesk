@@ -30,7 +30,7 @@ Route::group(['middleware' => 'permissionAdmin'], function () {
     Route::post('register', 'Auth\RegisterController@register');
     //users
     //  Route::resource('users', 'auth\RegisterController');
-    //TimeService  
+    //TimeService
     Route::resource('timeservice', 'TimeServiceController')->only(['create', 'store']);
 
     Route::resource('consultants', 'ConsultantController');
@@ -47,3 +47,6 @@ Route::get('/contacts','MessagesController@get');
 Route::get('conversation/{id}','MessagesController@getMessageFor');
 Route::post('conversation/send','MessagesController@send');
 Route::get('/consultantassigned','MessagesController@assigned');
+
+Route::get('/rate/{id}', 'RateServiceController@index');
+Route::post('/rate/{id}', 'RateServiceController@rate');
