@@ -47,8 +47,13 @@
                             href="{{route('timeservice.create')}}">Ingresar Horario</a>
                     </li>
                     <li class="nav-item mx-0 mx-lg-1">
+                        <a style="color:white; font-weight:bold;"
+                           class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                           href="{{url('company')}}">Editar empresa</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
 
-                    @guest  
+                    @guest
                             <li class="nav-item">
                                 <a style="color:white; font-weight:bold;" class="nav-link nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
@@ -70,7 +75,7 @@
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Cerrar Sesión') }}
                             </a>
-                        
+
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -105,7 +110,7 @@
     <div style="margin-top:5em ;" class="container">
         <center>@yield('seccion') </center>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
