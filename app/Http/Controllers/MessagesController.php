@@ -18,9 +18,7 @@ class MessagesController extends Controller
         // $contacts = User::where(function($query){
         //     $query->where('id','!=', auth()->id())
         //         ->andWhere('rol', '!=', 'customer');
-        // })->get();
-            
-            
+        // })->get();          
 
         return response()->json($contacts);
     }
@@ -46,11 +44,25 @@ class MessagesController extends Controller
     public function assigned(){
         // $consultant = User::where('id','!=', auth()->id())->get();
         
-        $consultant= User::find(2);
+        $consultant= User::find(3);
+
+
+        
+        $numerTickets = Consultant::min('number_ticket');
+        $consultant = Consultant::where('number_ticket',$numerTickets)->first();
+        //$user = $consultant;
+        if($consultant != null){
+            $user = User::where('id',$consultant->user_id)->first();
+            
+            $numerUpdate = $numerTickets + 1;
+    
+            $consultant->update([
+                'number_ticket' => $numerUpdate,
+            ]);
+        }
         
         //$consultant = User::where('id', '==', $consultant2)->get();
         // $consultant = DB::table('users')->where('id', '1')->get();
-        
-        return response()->json($consultant);
+        return response()->json($user);
     }
 }
