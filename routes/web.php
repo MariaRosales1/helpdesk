@@ -33,7 +33,7 @@ Route::group(['middleware' => 'permissionConsultant'], function () {
 
 });
 
-Route::get('/contacts','ContactsController@get');
-Route::get('conversation/{id}','ContactsController@getMessageFor');
-Route::post('conversation/send','ContactsController@send');
-
+Route::get('/contacts','MessagesController@get');
+Route::get('conversation/{id}','MessagesController@getMessageFor');
+Route::post('conversation/send','MessagesController@send');
+Route::get('/consultantassigned','MessagesController@assigned');

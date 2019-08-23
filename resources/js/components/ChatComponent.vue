@@ -1,7 +1,7 @@
 <template>
     <div class="chat-app">
         <Conversation :contact = "selectedContact" :messages = "messages" @new = "saveNewMessage"/>
-        <ContactList :contacts = "contacts" @selected="starConversationWith"/>
+        <ContactList :contacts = "contacts" :user = "user" :consultantassigned = "consultantassigned" @selected="starConversationWith"/>
     </div>
 </template>
 
@@ -20,7 +20,8 @@
             return {
                 selectedContact: null,
                 messages:[],
-                contacts:[]
+                contacts:[],
+                consultantassigned: 1
             };
         },
 
@@ -30,15 +31,24 @@
                     this.hanleIncoming(e.message)
                 });
 
-            console.log(this.user);
+            //console.log(this.user);
             axios.get('/contacts')
                 .then((response) => {                    
-                    console.log("inicio");
-                    console.log(response.data);
-                    console.log('fin');
+                    // console.log("inicio");
+                    // console.log(response.data);
+                    // console.log('fin');
                     this.contacts = response.data;
                 });
-            console.log('Component mounted.')
+            //console.log('Component mounted.')
+            
+            axios.get('/consultantassigned')
+                .then((response) => {                    
+                     console.log("inicio");
+                    console.log(response.data);
+                    console.log('fin');
+                    this.consultantassigned = response.data;
+                });
+
         },
         methods:{
             starConversationWith(contact){

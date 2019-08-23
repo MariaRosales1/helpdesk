@@ -6,13 +6,21 @@ use App\Events\NewMessage;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use App\User;
+use App\Models\Consultant;
+use App\Http\Controllers\DB;
 
-
-class ContactsController extends Controller
+class MessagesController extends Controller
 {
     public function get(){
         //Condición para los contactos 
         $contacts = User::where('id','!=', auth()->id())->get();
+
+        // $contacts = User::where(function($query){
+        //     $query->where('id','!=', auth()->id())
+        //         ->andWhere('rol', '!=', 'customer');
+        // })->get();
+            
+            
 
         return response()->json($contacts);
     }
@@ -34,5 +42,15 @@ class ContactsController extends Controller
 
         return response()->json($message);
     }
-}
 
+    public function assigned(){
+        // $consultant = User::where('id','!=', auth()->id())->get();
+        
+        $consultant= User::find(2);
+        
+        //$consultant = User::where('id', '==', $consultant2)->get();
+        // $consultant = DB::table('users')->where('id', '1')->get();
+        
+        return response()->json($consultant);
+    }
+}

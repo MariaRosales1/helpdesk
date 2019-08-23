@@ -1719,7 +1719,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       selectedContact: null,
       messages: [],
-      contacts: []
+      contacts: [],
+      consultantassigned: 1
     };
   },
   mounted: function mounted() {
@@ -1727,15 +1728,21 @@ __webpack_require__.r(__webpack_exports__);
 
     Echo["private"]("messages.".concat(this.user.id)).listen('NewMessage', function (e) {
       _this.hanleIncoming(e.message);
-    });
-    console.log(this.user);
+    }); //console.log(this.user);
+
     axios.get('/contacts').then(function (response) {
+      // console.log("inicio");
+      // console.log(response.data);
+      // console.log('fin');
+      _this.contacts = response.data;
+    }); //console.log('Component mounted.')
+
+    axios.get('/consultantassigned').then(function (response) {
       console.log("inicio");
       console.log(response.data);
       console.log('fin');
-      _this.contacts = response.data;
+      _this.consultantassigned = response.data;
     });
-    console.log('Component mounted.');
   },
   methods: {
     starConversationWith: function starConversationWith(contact) {
@@ -1788,12 +1795,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     contacts: {
       type: Array,
       "default": []
-    }
+    },
+    user: {
+      type: Object,
+      required: true
+    },
+    consultantassigned: {}
   },
   data: function data() {
     return {
@@ -48351,7 +48377,11 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("ContactList", {
-        attrs: { contacts: _vm.contacts },
+        attrs: {
+          contacts: _vm.contacts,
+          user: _vm.user,
+          consultantassigned: _vm.consultantassigned
+        },
         on: { selected: _vm.starConversationWith }
       })
     ],
@@ -48381,31 +48411,77 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "contacts-list" }, [
-    _c(
-      "ul",
-      _vm._l(_vm.contacts, function(contact, index) {
-        return _c(
-          "li",
-          {
-            key: contact.id,
-            class: { selected: index == _vm.selected },
-            on: {
-              click: function($event) {
-                return _vm.selectContact(index, contact)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "contact" }, [
-              _c("p", { staticClass: "name" }, [_vm._v(_vm._s(contact.name))]),
-              _vm._v(" "),
-              _c("p", { staticClass: "email" }, [_vm._v(_vm._s(contact.email))])
-            ])
-          ]
-        )
-      }),
-      0
-    )
+    _vm.user.rol !== "customer"
+      ? _c("div", [
+          _c(
+            "ul",
+            _vm._l(_vm.contacts, function(contact, index) {
+              return _c(
+                "li",
+                {
+                  key: contact.id,
+                  class: { selected: index == _vm.selected },
+                  on: {
+                    click: function($event) {
+                      return _vm.selectContact(index, contact)
+                    }
+                  }
+                },
+                [
+                  contact.rol == "customer"
+                    ? _c("div", { staticClass: "contact" }, [
+                        _c("p", { staticClass: "name" }, [
+                          _vm._v(_vm._s(contact.name))
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "email" }, [
+                          _vm._v(_vm._s(contact.email))
+                        ])
+                      ])
+                    : _vm._e()
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.user.rol == "customer"
+      ? _c("div", [
+          _c(
+            "ul",
+            _vm._l(_vm.contacts, function(contact, index) {
+              return _c(
+                "li",
+                {
+                  key: contact.id,
+                  class: { selected: index == _vm.selected },
+                  on: {
+                    click: function($event) {
+                      return _vm.selectContact(index, contact)
+                    }
+                  }
+                },
+                [
+                  contact.id == _vm.consultantassigned.id
+                    ? _c("div", { staticClass: "contact" }, [
+                        _c("p", { staticClass: "name" }, [
+                          _vm._v(_vm._s(contact.name))
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "email" }, [
+                          _vm._v(_vm._s(contact.email))
+                        ])
+                      ])
+                    : _vm._e()
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

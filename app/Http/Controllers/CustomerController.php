@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Customer as CustomerModel;
 use Illuminate\Http\Request;
 use App\Http\Requests\Customer;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -19,8 +21,16 @@ class CustomerController extends Controller
         $newCustomer->fill($data);
         $newCustomer->save();
         
+        //Creación del customer como usuario 
+        $usuario= User::create([
+            'identification' => rand(1000000000, 9999999999),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make('123456789'),
+            'rol' => 'customer'
+        ]);
         
-        return view('customers.edit', [ 'enableButton' =>$enableButton] );
+        return view('customers.edit', [ 'enableButton' =>$enableButton,'usuario' => $usuario] );
         // return back()->with('mensaje','El asesor fue registrado exitosamente');
     }
     public function chat(){

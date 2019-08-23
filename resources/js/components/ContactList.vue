@@ -1,13 +1,27 @@
 <template>
     <div class="contacts-list">
-        <ul>
-            <li v-for="(contact, index) in contacts" :key="contact.id" @click="selectContact(index,contact)" :class="{ 'selected': index == selected }">
-                <div class="contact">
-                    <p class="name">{{contact.name}}</p>
-                    <p class="email">{{contact.email}}</p>
-                </div>
-            </li>
-        </ul>
+        <div v-if="user.rol !== 'customer'">
+            <ul>
+                <li v-for="(contact, index) in contacts" :key="contact.id" @click="selectContact(index,contact)" :class="{ 'selected': index == selected }">
+                    <div  v-if="contact.rol == 'customer'" class="contact" >
+                        <p class="name">{{contact.name}}</p>
+                        <p class="email">{{contact.email}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div v-if="user.rol == 'customer'">
+            <ul>
+                <li v-for="(contact, index) in contacts" :key="contact.id" @click="selectContact(index,contact)" :class="{ 'selected': index == selected }">
+                    <div v-if="contact.id == consultantassigned.id" class="contact" >
+                        <p class="name">{{contact.name}}</p>
+                        <p class="email">{{contact.email}}</p>                        
+                    </div>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </template>
 
@@ -17,6 +31,13 @@
             contacts:{
                 type: Array,
                 default: []
+            },
+             user:{
+                type: Object,
+                required: true
+            },
+            consultantassigned: {
+               
             }
         },
         data(){
