@@ -20,8 +20,8 @@ class CreateTicketsTable extends Migration
             $table->string('state');
             $table->date('closing_date');
             $table->text('note');
-            $table->text('comment');
-            $table->string('score');
+            $table->text('comment')->nullable();
+            $table->integer('score');
             $table->timestamps();
         });
     }
